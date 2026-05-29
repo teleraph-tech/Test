@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; background: var(--ag-blue-tint); }
+  .card {
+    background: var(--ag-cyan-tint); border: 1px solid var(--ag-cyan); border-radius: 12px;
+    box-shadow: var(--shadow-card); padding: 24px;
+    display: flex; flex-direction: column; gap: 18px; max-width: 360px;
+  }
+  .top { display:flex; justify-content:space-between; align-items:center; }
+  .title { font: 700 16px/1.4 var(--font-sans); color: var(--ag-blue); }
+  .date { font: 400 14px/1.4 var(--font-sans); color: var(--fg-2); margin-top: 2px; }
+  .crest {
+    width: 42px; height: 42px; border-radius: 6px; background: var(--ag-ink);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font: 700 11px/1 var(--font-sans);
+  }
+  .name { font: 700 16px/1.4 var(--font-sans); color: var(--ag-blue); }
+  .dl { display:inline-flex; align-items:center; gap:8px; padding: 10px 14px 10px 0; font: 400 14px/1.4 var(--font-sans); color: var(--ag-ink); text-decoration: underline; text-underline-offset:2px; align-self:flex-start; }
+  .dl svg { width:18px; height:18px; }
+</style></head><body>
+  <div class="card">
+    <div class="top">
+      <div>
+        <div class="title">Votre carte tiers payant</div>
+        <div class="date">du 15/01/2025 au 31/12/2025</div>
+      </div>
+      <div class="crest">TA</div>
+    </div>
+    <div class="name">Marie Dupont</div>
+    <a class="dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>Télécharger votre carte TP</a>
+  </div>
+</body></html>

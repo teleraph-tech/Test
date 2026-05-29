@@ -1,0 +1,176 @@
+/* =========================================================================
+   Test AG · Colors & Type
+   Source of truth: AG2.fig (Composants + Page-1 mockups).
+   Fonts: Inter (Google Fonts) — Regular 400, Medium 500, Semi-Bold 600, Bold 700.
+   ========================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Brand / primary -------------------------------------------------- */
+  --ag-blue:            rgb(2, 66, 244);     /* primary action, links, headings */
+  --ag-blue-tint:       rgb(230, 238, 253);  /* hero / section / icon-chip bg   */
+  --ag-blue-shadow:     rgb(176, 188, 224);  /* card drop-shadow color          */
+  --ag-blue-shadow-75:  rgba(176, 188, 224, 0.75);
+
+  /* ---- Neutrals --------------------------------------------------------- */
+  --ag-ink:             rgb(12, 12, 12);    /* near-black, primary text + dark surfaces */
+  --ag-ink-pure:        rgb(0, 0, 0);
+  --ag-grey:            rgb(102, 102, 102); /* secondary / meta text   */
+  --ag-grey-light:      rgb(187, 187, 187); /* tertiary / placeholder  */
+  --ag-rule:            rgb(237, 237, 237); /* hairline border, footer-strip bg */
+  --ag-surface:         rgb(255, 255, 255);
+
+  /* ---- Accent palette (status, identity, illustrative) ----------------- */
+  --ag-green:           rgb(85, 188, 173);  /* primary accent — section icons, "Remboursé" stem */
+  --ag-green-tint:      rgb(144, 236, 178); /* "Remboursé" pill bg */
+  --ag-cyan:            rgb(96, 194, 229);  /* tiers-payant card border */
+  --ag-cyan-tint:       rgb(181, 220, 233); /* tiers-payant card bg */
+  --ag-yellow:          rgb(251, 220, 108); /* "Dépensé" pill */
+  --ag-pink:            rgb(240, 152, 218); /* avatar — féminin */
+  --ag-violet:          rgb(157, 175, 255); /* avatar — masculin / haut-conseil */
+  --ag-orange:          rgb(238, 131, 57);  /* chart slice / alert accent */
+  --ag-purple:          rgb(114, 41, 245);  /* documents section icon */
+  --ag-purple-dashed:   rgb(151, 71, 255);  /* Figma frame-only — slot outline; NEVER ship */
+
+  /* ---- Semantic ⟶ role-named tokens (use these in components) ---------- */
+  --fg-1:               var(--ag-ink);
+  --fg-2:               var(--ag-grey);
+  --fg-3:               var(--ag-grey-light);
+  --fg-brand:           var(--ag-blue);
+  --fg-on-dark:         var(--ag-surface);
+  --fg-on-brand:        var(--ag-surface);
+
+  --bg-app:             var(--ag-surface);
+  --bg-section:         var(--ag-blue-tint);   /* tinted section background */
+  --bg-section-grey:    var(--ag-rule);        /* "documents" section strip */
+  --bg-surface:         var(--ag-surface);
+  --bg-surface-dark:    var(--ag-ink);
+  --bg-brand:           var(--ag-blue);
+  --bg-icon-chip:       var(--ag-blue-tint);
+  --bg-icon-chip-on:    var(--ag-blue);
+
+  --border-rule:        var(--ag-rule);
+  --border-focus:       var(--ag-blue);
+  --border-strong:      var(--ag-ink);
+
+  --shadow-card:        0 4px 16px 0 var(--ag-blue-shadow);
+  --shadow-card-soft:   0 4px 16px 0 var(--ag-blue-shadow-75);
+
+  /* ---- Radii ----------------------------------------------------------- */
+  --r-xs:               4px;   /* small icon chip */
+  --r-sm:               5px;   /* status pills, secondary buttons */
+  --r-md:               8px;   /* cards, primary buttons */
+  --r-lg:               12px;  /* tiers-payant card */
+  --r-pill:             40px;  /* full pills */
+  --r-circle:           9999px;
+
+  /* ---- Spacing scale (4-based) ---------------------------------------- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-7:  32px;
+  --s-8:  40px;
+  --s-9:  48px;
+  --s-10: 52px;
+  --s-12: 64px;
+
+  /* ---- Type system --------------------------------------------------- */
+  --font-sans:          "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --leading-tight:      1.4;       /* exact value used everywhere in the Figma */
+
+  /* Display / page heading — 24/1.4 Inter Medium */
+  --t-display-size:     24px;
+  --t-display-weight:   500;
+
+  /* Card title / row title — 16/1.4 Inter Bold */
+  --t-title-size:       16px;
+  --t-title-weight:     700;
+
+  /* Body — 14/1.4 Inter Regular */
+  --t-body-size:        14px;
+  --t-body-weight:      400;
+
+  /* Body emphasized — 14/1.4 Inter Bold (used on buttons, menu labels) */
+  --t-body-bold-weight: 700;
+
+  /* Meta / caption — 12/1.4 Inter Regular */
+  --t-meta-size:        12px;
+  --t-meta-weight:      400;
+
+  /* Eyebrow / all-caps — 12/1.4 Inter Bold */
+  --t-eyebrow-size:     12px;
+  --t-eyebrow-weight:   700;
+}
+
+/* =========================================================================
+   Semantic element styles — drop-in defaults
+   ========================================================================= */
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg-app);
+  font-size: var(--t-body-size);
+  line-height: var(--leading-tight);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .t-display {
+  font-size: var(--t-display-size);
+  font-weight: var(--t-display-weight);
+  line-height: var(--leading-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+h2, .t-title {
+  font-size: var(--t-title-size);
+  font-weight: var(--t-title-weight);
+  line-height: var(--leading-tight);
+  color: var(--fg-brand);   /* section / card titles are blue in the system */
+  margin: 0;
+}
+
+h3, .t-row-title {
+  font-size: var(--t-title-size);
+  font-weight: var(--t-title-weight);
+  line-height: var(--leading-tight);
+  color: var(--fg-brand);
+  margin: 0;
+}
+
+p, .t-body {
+  font-size: var(--t-body-size);
+  font-weight: var(--t-body-weight);
+  line-height: var(--leading-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.t-meta {
+  font-size: var(--t-meta-size);
+  font-weight: var(--t-meta-weight);
+  line-height: var(--leading-tight);
+  color: var(--fg-2);
+}
+
+.t-eyebrow {
+  font-size: var(--t-eyebrow-size);
+  font-weight: var(--t-eyebrow-weight);
+  line-height: var(--leading-tight);
+  color: var(--ag-ink-pure);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+a, .t-link {
+  font-size: var(--t-body-size);
+  color: var(--fg-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover { opacity: 0.85; }

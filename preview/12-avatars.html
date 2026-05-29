@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; }
+  .row { gap: 32px; align-items: center; flex-wrap: wrap; }
+  .av {
+    width: 32px; height: 32px; border-radius: 9999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font: 400 14px/1 var(--font-sans); color: var(--ag-ink);
+    border: 2px solid;
+  }
+  .av.f { background: var(--ag-pink); border-color: var(--ag-pink); }
+  .av.m { background: var(--ag-violet); border-color: var(--ag-violet); }
+  .stack { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+  .lab { font: 400 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--fg-2); }
+  .name { font: 400 14px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .pair { display:inline-flex; align-items:center; gap:8px; }
+</style></head><body>
+  <div class="row">
+    <div class="stack">
+      <div class="pair"><span class="av f">IC</span><span class="name">Inès Cordonier</span></div>
+      <div class="lab">F · pink</div>
+    </div>
+    <div class="stack">
+      <div class="pair"><span class="av m">HC</span><span class="name">Henri Cordonier</span></div>
+      <div class="lab">M · violet</div>
+    </div>
+  </div>
+</body></html>

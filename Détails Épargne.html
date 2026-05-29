@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="fr" data-screen-label="Espace client · Détails épargne">
+<head>
+  <meta charset="utf-8">
+  <title>Test AG — Plan Épargne Retraite Entreprise</title>
+  <meta name="viewport" content="width=1280">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="assets/icons.css">
+  <script src="app-header.js" defer></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #fff;
+      color: var(--fg-1);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+
+    /* ─────────── Surheader (utility bar) ─────────── */
+    .surheader {
+      background: #fff;
+      border-bottom: 1px solid var(--border-rule);
+      padding: 14px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      position: sticky; top: 0; z-index: 30;
+    }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand .mark {
+      width: 38px; height: 38px; border-radius: 6px;
+      background: var(--ag-blue);
+      position: relative; overflow: hidden; flex: none;
+    }
+    .brand .mark::before,
+    .brand .mark::after { content: ""; position: absolute; inset: 0; }
+    .brand .mark::before {
+      background: var(--ag-ink);
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    .brand .mark::after {
+      background: var(--ag-green);
+      clip-path: polygon(50% 0, 100% 0, 100% 50%, 50% 50%);
+    }
+    .brand .wordmark {
+      font: 700 16px/1 var(--font-sans);
+      color: var(--ag-ink);
+      letter-spacing: 0.02em;
+    }
+    .brand .divider {
+      width: 1px; height: 32px; background: var(--border-rule); margin: 0 8px;
+    }
+    .brand .page-title {
+      font: 500 18px/1.2 var(--font-sans);
+      color: var(--ag-ink);
+    }
+
+    .sh-actions { display: flex; align-items: center; gap: 12px; }
+    .sh-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: var(--r-md);
+      font: 700 14px/1 var(--font-sans);
+      cursor: pointer;
+      background: #fff;
+      color: var(--ag-ink);
+      border: 1px solid var(--ag-ink);
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+      height: 46px;
+    }
+    .sh-btn:hover {
+      background: var(--ag-blue);
+      border-color: var(--ag-blue);
+      color: #fff;
+    }
+    .sh-btn .gi { width: 18px; height: 18px; display: inline-grid; place-items: center; }
+    .sh-btn .gi svg { width: 18px; height: 18px; }
+    .sh-btn.profile { padding-right: 12px; }
+    .sh-btn.profile .av {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--ag-pink); color: var(--ag-ink);
+      border: 2px solid var(--ag-pink);
+      display: inline-grid; place-items: center;
+      font: 400 12px/1 var(--font-sans);
+      margin-left: -4px;
+    }
+
+    /* ─────────── Breadcrumb ─────────── */
+    .crumbs {
+      padding: 14px 48px;
+      background: #fff;
+      border-bottom: 1px solid var(--border-rule);
+    }
+    .crumbs-inner {
+      max-width: 1184px; margin: 0 auto;
+      display: flex; align-items: center; gap: 8px;
+      font: 400 13px/1.4 var(--font-sans);
+      color: var(--fg-2);
+    }
+    .crumbs a {
+      color: var(--fg-2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .crumbs a:hover { color: var(--ag-blue); }
+    .crumbs .sep { color: var(--ag-grey-light); }
+    .crumbs .cur { color: var(--ag-ink); font-weight: 700; }
+    .crumbs .back {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-right: 8px; padding-right: 12px;
+      border-right: 1px solid var(--border-rule);
+      color: var(--ag-ink); font-weight: 700;
+    }
+    .crumbs .back .gi {
+      width: 16px; height: 16px;
+      display: inline-grid; place-items: center;
+      transform: scaleX(-1);
+    }
+    .crumbs .back:hover { color: var(--ag-blue); }
+
+    /* ─────────── HERO / fund header ─────────── */
+    .fund-hero {
+      background: var(--bg-section);
+      padding: 40px 48px 56px;
+    }
+    .fund-hero-inner {
+      max-width: 1184px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .fund-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .fund-head .left { display: flex; align-items: flex-start; gap: 20px; min-width: 0; }
+    .fund-head .crest {
+      width: 56px; height: 56px; border-radius: var(--r-md);
+      background: var(--ag-ink); color: #fff;
+      display: inline-grid; place-items: center;
+      box-shadow: 0 2px 8px var(--ag-blue-shadow-75);
+      flex: none;
+    }
+    .fund-head .crest .i { width: 26px; height: 26px; }
+    .fund-head .id { min-width: 0; }
+    .fund-head .eyebrow {
+      font: 700 12px/1.4 var(--font-sans);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ag-blue);
+      margin-bottom: 6px;
+    }
+    .fund-head h1 {
+      font: 500 28px/1.25 var(--font-sans);
+      color: var(--ag-ink);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .fund-head .commerce {
+      font: 400 14px/1.4 var(--font-sans);
+      color: var(--fg-2);
+    }
+    .fund-head .commerce strong {
+      color: var(--ag-ink); font-weight: 700;
+    }
+    .fund-head .commerce .pill {
+      display: inline-flex; align-items: center;
+      padding: 2px 10px;
+      border-radius: var(--r-sm);
+      background: #fff;
+      border: 1px solid var(--border-rule);
+      font: 400 12px/1.6 var(--font-sans);
+      color: var(--fg-2);
+      margin-left: 8px;
+    }
+
+    .fund-head .right {
+      text-align: right; flex: none;
+    }
+    .fund-head .amt-big {
+      font: 700 28px/1.1 var(--font-sans);
+      color: var(--ag-ink);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+    .fund-head .amt-lbl {
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 6px;
+    }
+    .fund-head .grow {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px;
+      padding: 4px 12px 4px 4px;
+      border-radius: 40px;
+      background: var(--ag-green-tint);
+      font: 700 13px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+    }
+    .fund-head .grow .arrow {
+      width: 18px; height: 18px;
+      background: var(--ag-green); color: #fff;
+      border-radius: 50%;
+      display: inline-grid; place-items: center;
+    }
+    .fund-head .grow .arrow .i { width: 11px; height: 11px; }
+
+    /* KPI strip — sits inside hero */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--border-rule);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .kpi-strip .item {
+      background: #fff;
+      padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .kpi-strip .item .l {
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+    }
+    .kpi-strip .item .v {
+      font: 700 18px/1.2 var(--font-sans);
+      color: var(--ag-ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-strip .item .v.pos { color: var(--ag-green); }
+    .kpi-strip .item .s {
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 2px;
+    }
+
+    /* ─────────── Composition section ─────────── */
+    .section { padding: 56px 48px; }
+    .section.white { background: #fff; }
+    .section-inner { max-width: 1184px; margin: 0 auto; }
+
+    .section-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--ag-green);
+    }
+    .section-head .left { display: flex; align-items: center; gap: 16px; }
+    .section-head .title {
+      font: 500 22px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+    }
+    .section-head .meta {
+      font: 400 13px/1.4 var(--font-sans);
+      color: var(--fg-2);
+    }
+
+    /* Composition grid: donut left, stack right */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    /* ── Donut block (no card wrapper) ───────────── */
+    .donut-block {
+      display: flex; flex-direction: column;
+      gap: 24px;
+      padding: 4px 4px 0;
+      align-self: start;
+    }
+    .dc-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ag-green);
+    }
+    .dc-title {
+      font: 700 16px/1.4 var(--font-sans);
+      color: var(--ag-blue);
+    }
+    .dc-meta { font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); }
+
+    .donut-stage {
+      display: flex; flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 8px 0 4px;
+    }
+    .donut-center {
+      position: relative;
+      width: 280px; height: 280px;
+      display: inline-grid; place-items: center;
+      flex: none;
+    }
+    .donut {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--seg-1-color) 0 var(--seg-1-end),
+        var(--seg-2-color) var(--seg-1-end) var(--seg-2-end),
+        var(--seg-3-color, var(--seg-2-color)) var(--seg-2-end) var(--seg-3-end, var(--seg-2-end)),
+        var(--seg-4-color, var(--seg-3-color, var(--seg-2-color))) var(--seg-3-end, var(--seg-2-end)) 100%
+      );
+      mask: radial-gradient(circle, transparent 92px, #000 92.5px);
+      -webkit-mask: radial-gradient(circle, transparent 92px, #000 92.5px);
+      transition: background 240ms ease;
+    }
+    .donut-center .core {
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .donut-center .core .lbl {
+      font: 700 11px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+    }
+    .donut-center .core .v {
+      font: 700 28px/1.1 var(--font-sans);
+      color: var(--ag-ink);
+      font-variant-numeric: tabular-nums;
+      display: block;
+      margin-top: 6px;
+      letter-spacing: -0.01em;
+    }
+    .donut-center .core .s {
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .donut-legend {
+      width: 100%;
+      display: flex; flex-direction: column;
+      gap: 12px;
+    }
+    .donut-legend .leg {
+      display: grid;
+      grid-template-columns: 14px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border-rule);
+      background: #fff;
+      transition: background 120ms ease, border-color 120ms ease;
+      cursor: default;
+    }
+    .donut-legend .leg.active {
+      background: var(--ag-blue-tint);
+      border-color: var(--ag-blue);
+    }
+    .donut-legend .sw {
+      width: 12px; height: 12px;
+      border-radius: 3px;
+    }
+    .donut-legend .lbl {
+      font: 700 13px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+    }
+    .donut-legend .pct {
+      font: 400 11px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 2px;
+    }
+    .donut-legend .val {
+      font: 700 13px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Right column: tabs + cards ──────────────── */
+    .right-col {
+      display: flex; flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--border-rule);
+      overflow-x: auto;
+      padding: 0;
+      margin: 0 0 4px;
+      background: transparent;
+    }
+    .tab {
+      padding: 14px 4px;
+      margin-right: 24px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font: 700 14px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap;
+      transition: color 120ms ease, border-color 120ms ease;
+      margin-bottom: -1px;
+    }
+    .tab:last-child { margin-right: 0; }
+    .tab:hover { color: var(--ag-blue); }
+    .tab.active {
+      color: var(--ag-blue);
+      border-bottom-color: var(--ag-blue);
+    }
+
+    /* Stacked breakdown cards */
+    .breakdown {
+      display: flex; flex-direction: column;
+      gap: 16px;
+      min-height: 0;
+    }
+    .bd-card {
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-card);
+      padding: 22px 24px;
+      display: flex; flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      border: 1.6px solid transparent;
+      transition: border-color 120ms ease, transform 120ms ease;
+    }
+    .bd-card::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: var(--bd-accent, var(--ag-blue));
+    }
+    .bd-card { background: #fff; }
+    .bd-card.tone-blue   { --bd-accent: var(--ag-blue); }
+    .bd-card.tone-orange { --bd-accent: var(--ag-orange); }
+    .bd-card.tone-green  { --bd-accent: var(--ag-green); }
+    .bd-card.tone-purple { --bd-accent: var(--ag-purple); }
+    .bd-card.tone-yellow { --bd-accent: #C9A227; }
+    .bd-card.tone-cyan   { --bd-accent: var(--ag-cyan); }
+    .bd-card.tone-pink   { --bd-accent: #C84BA0; }
+    .bd-card.tone-violet { --bd-accent: var(--ag-violet); }
+
+    .bd-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px;
+    }
+    .bd-name {
+      display: flex; align-items: center; gap: 10px;
+      min-width: 0;
+    }
+    .bd-name .tag {
+      font: 700 11px/1 var(--font-sans);
+      color: #fff;
+      background: var(--bd-accent);
+      padding: 4px 10px;
+      border-radius: 40px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .bd-title {
+      font: 700 18px/1.3 var(--font-sans);
+      color: var(--ag-ink);
+      letter-spacing: -0.005em;
+    }
+    .bd-share {
+      font: 700 28px/1 var(--font-sans);
+      color: var(--bd-accent);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+      flex: none;
+    }
+    .bd-body {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .bd-amount {
+      font: 700 28px/1.1 var(--font-sans);
+      color: var(--ag-ink);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+    .bd-amount-sub {
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 4px;
+    }
+    .bd-pv {
+      text-align: right;
+    }
+    .bd-pv .v {
+      font: 700 14px/1.2 var(--font-sans);
+      color: var(--ag-green);
+      font-variant-numeric: tabular-nums;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .bd-pv .v::before {
+      content: "▲"; font-size: 9px; transform: translateY(-1px);
+    }
+    .bd-pv .v.neg { color: #B53F2E; }
+    .bd-pv .v.neg::before { content: "▼"; }
+    .bd-pv .l {
+      font: 400 11px/1.4 var(--font-sans);
+      color: var(--fg-2);
+      margin-top: 3px;
+    }
+    .bd-desc {
+      font: 400 13px/1.5 var(--font-sans);
+      color: var(--fg-2);
+      padding-top: 14px;
+      border-top: 1px solid var(--border-rule);
+    }
+    .bd-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      font: 400 12px/1.4 var(--font-sans);
+      color: var(--fg-2);
+    }
+    .bd-meta .chips {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .bd-meta .chip {
+      display: inline-flex; align-items: center;
+      padding: 3px 9px;
+      border-radius: var(--r-sm);
+      background: var(--ag-blue-tint);
+      border: 1px solid transparent;
+      font: 700 11px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+    }
+    .bd-meta .more {
+      display: inline-flex; align-items: center; gap: 4px;
+      font: 700 12px/1 var(--font-sans);
+      color: var(--ag-ink);
+      background: none; border: none;
+      cursor: pointer; padding: 0;
+    }
+    .bd-meta .more:hover { color: var(--ag-blue); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ─────────── Action row ─────────── */
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .act {
+      background: #fff;
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-card);
+      padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      border: 1.6px solid transparent;
+      transition: border-color 120ms ease, color 120ms ease;
+    }
+    .act:hover { border-color: var(--ag-blue); }
+    .act .label {
+      font: 700 14px/1.4 var(--font-sans);
+      color: var(--ag-ink);
+    }
+    .act:hover .label { color: var(--ag-blue); }
+    .act .arr {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--ag-blue-tint);
+      color: var(--ag-blue);
+      display: inline-grid; place-items: center;
+      flex: none;
+    }
+    .act:hover .arr { background: var(--ag-blue); color: #fff; }
+    .act .arr .i { width: 14px; height: 14px; }
+
+    /* ─────────── Footer ─────────── */
+    .footer-band {
+      background: var(--bg-section-grey);
+      padding: 32px 48px;
+    }
+    .footer-inner {
+      max-width: 1184px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      font: 400 12px/1.4 var(--font-sans); color: var(--fg-2);
+    }
+    .footer-inner nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-inner a { color: var(--fg-2); text-decoration: none; }
+    .footer-inner a:hover { color: var(--ag-blue); }
+
+    @media (max-width: 1080px) {
+      .comp-grid { grid-template-columns: 1fr; }
+      .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .actions { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .surheader { padding: 14px 24px; }
+      .crumbs, .fund-hero, .section, .footer-band { padding-left: 24px; padding-right: 24px; }
+      .fund-head .amt-big { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─────────── GLOBAL HEADER ─────────── -->
+  <header data-app-header data-active="retraite"></header>
+
+  <!-- ─────────── BREADCRUMB ─────────── -->
+  <div class="crumbs">
+    <div class="crumbs-inner">
+      <a class="back" href="Espace Client - Accueil.html">
+        <span class="gi" aria-hidden="true"><span class="i i-arrow-enter"></span></span>
+        Retour
+      </a>
+      <a href="Espace Client - Accueil.html">Espace client</a>
+      <span class="sep">›</span>
+      <a href="Espace Client - Accueil.html#epargne">Votre épargne</a>
+      <span class="sep">›</span>
+      <span class="cur">Plan Épargne Retraite Entreprise</span>
+    </div>
+  </div>
+
+  <!-- ─────────── HERO / FUND HEADER ─────────── -->
+  <section class="fund-hero" data-screen-label="01 Hero">
+    <div class="fund-hero-inner">
+      <div class="fund-head">
+        <div class="left">
+          <span class="crest" aria-hidden="true"><span class="i i-piggy"></span></span>
+          <div class="id">
+            <div class="eyebrow">Contrat d'épargne retraite · n° 00123456</div>
+            <h1>Plan Épargne Retraite Entreprise</h1>
+            <div class="commerce">
+              <strong>Vivépargne</strong> · ouvert le 15/01/2018
+              <span class="pill">Entreprise · Decathlon</span>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="amt-big">22&nbsp;500,00&nbsp;€</div>
+          <div class="amt-lbl">Encours total · estim. au 12/05/2026</div>
+          <div class="grow">
+            <span class="arrow" aria-hidden="true"><span class="i i-arrow-up"></span></span>
+            +1&nbsp;245,67&nbsp;€ sur 12 mois
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div class="item">
+          <span class="l">Performance 12 mois</span>
+          <span class="v pos">+5,86&nbsp;%</span>
+          <span class="s">au 12/05/2026</span>
+        </div>
+        <div class="item">
+          <span class="l">Versement programmé</span>
+          <span class="v">150,00&nbsp;€</span>
+          <span class="s">prélevé le 5 du mois</span>
+        </div>
+        <div class="item">
+          <span class="l">Profil d'investissement</span>
+          <span class="v">Équilibré</span>
+          <span class="s">défini le 12/03/2024</span>
+        </div>
+        <div class="item">
+          <span class="l">Prochain arbitrage</span>
+          <span class="v">01/07/2026</span>
+          <span class="s">rééquilibrage automatique</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── COMPOSITION ─────────── -->
+  <section class="section white" id="composition" data-screen-label="02 Composition">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="left">
+          <span class="title">Composition de votre contrat</span>
+        </div>
+        <span class="meta">Encours réparti · estim. au 12/05/2026</span>
+      </div>
+
+      <div class="comp-grid">
+
+        <!-- ─── DONUT (left, no card) ─── -->
+        <section class="donut-block" aria-label="Répartition de la constitution">
+          <div class="dc-head">
+            <div class="dc-title" id="donut-title">Par mode de gestion</div>
+            <div class="dc-meta" id="donut-meta">Au 12/05/2026</div>
+          </div>
+          <div class="donut-stage">
+            <div class="donut-center">
+              <div class="donut" id="donut" role="img" aria-labelledby="donut-title"></div>
+              <div class="core">
+                <span class="lbl">Encours total</span>
+                <span class="v">22&nbsp;500,00&nbsp;€</span>
+                <span class="s" id="donut-count">2 poches de gestion</span>
+              </div>
+            </div>
+            <div class="donut-legend" id="legend">
+              <!-- filled by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── RIGHT: tabs + breakdown cards ─── -->
+        <div class="right-col">
+          <nav class="tabs" role="tablist" aria-label="Vues de la composition">
+            <button class="tab active" role="tab" data-view="mode"     aria-selected="true">Mode de gestion</button>
+            <button class="tab"        role="tab" data-view="origine"  aria-selected="false">Origine de versement</button>
+            <button class="tab"        role="tab" data-view="support"  aria-selected="false">Type de support</button>
+            <button class="tab"        role="tab" data-view="financier" aria-selected="false">Support financier</button>
+          </nav>
+
+          <div class="breakdown" id="breakdown">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── Quick actions ─── -->
+      <div class="actions" aria-label="Agir sur votre contrat">
+        <button class="act" type="button">
+          <span class="label">Faire un versement libre</span>
+          <span class="arr" aria-hidden="true"><span class="i i-arrow-enter" style="transform: scaleX(-1)"></span></span>
+        </button>
+        <button class="act" type="button">
+          <span class="label">Modifier la répartition</span>
+          <span class="arr" aria-hidden="true"><span class="i i-arrow-enter" style="transform: scaleX(-1)"></span></span>
+        </button>
+        <button class="act" type="button">
+          <span class="label">Demander un rachat</span>
+          <span class="arr" aria-hidden="true"><span class="i i-arrow-enter" style="transform: scaleX(-1)"></span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── FOOTER ─────────── -->
+  <div class="footer-band">
+    <div class="footer-inner">
+      <span>© 2026 Test AG — Tous droits réservés</span>
+      <nav>
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Cookies</a>
+        <a href="#">Aide &amp; FAQ</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ─────────── DATA + INTERACTIONS ─────────── -->
+  <script>
+    // French number formatting (1 234,56 €)
+    const fmtEUR = n => n.toLocaleString('fr-FR', {
+      minimumFractionDigits: 2, maximumFractionDigits: 2
+    }).replace(/\u202f/g, '\u00a0') + '\u00a0€';
+    const fmtPV = n => (n >= 0 ? '+' : '') + n.toLocaleString('fr-FR', {
+      minimumFractionDigits: 2, maximumFractionDigits: 2
+    }).replace(/\u202f/g, '\u00a0') + '\u00a0€';
+
+    const TOTAL = 22500;
+
+    // Each view defines its slices. Amounts must sum to TOTAL.
+    // tone = card color theme; color = donut hex (resolved via CSS var name)
+    const VIEWS = {
+      mode: {
+        title: 'Par mode de gestion',
+        meta: 'Au 12/05/2026',
+        countLabel: n => n + ' poche' + (n>1?'s':'') + ' de gestion',
+        slices: [
+          {
+            id: 'horizon', label: 'Gestion par horizon', tag: '2/3',
+            amount: 15000, pv: +925.22, share: 2/3,
+            tone: 'orange', color: 'var(--ag-orange)',
+            desc: "Allocation pilotée selon votre date prévisionnelle de départ (01/10/2042). Désensibilisation progressive du risque sur 16 ans.",
+            chips: ['16 ans avant départ', '78 % unités de compte', '22 % fonds €']
+          },
+          {
+            id: 'pilote', label: 'Gestion pilotée', tag: '1/3',
+            amount: 7500, pv: +320.45, share: 1/3,
+            tone: 'blue', color: 'var(--ag-blue)',
+            desc: "Allocation construite par nos équipes selon votre profil Équilibré. Arbitrages trimestriels automatiques.",
+            chips: ['Profil Équilibré', 'Arbitrage trimestriel', 'Frais 0,80 %']
+          }
+        ]
+      },
+
+      origine: {
+        title: 'Par origine de versement',
+        meta: 'Cumul depuis l\'ouverture',
+        countLabel: n => n + ' source' + (n>1?'s':'') + ' de versement',
+        slices: [
+          {
+            id: 'volo', label: 'Versements volontaires', tag: '52 %',
+            amount: 11700, pv: +642.10, share: 0.52,
+            tone: 'blue', color: 'var(--ag-blue)',
+            desc: "Versement programmé mensuel de 150,00 € + 6 versements libres effectués depuis 2018.",
+            chips: ['78 versements programmés', '6 versements libres', 'Déductibles IR']
+          },
+          {
+            id: 'employeur', label: 'Abondement employeur', tag: '34 %',
+            amount: 7650, pv: +428.92, share: 0.34,
+            tone: 'green', color: 'var(--ag-green)',
+            desc: "Abondement Decathlon plafonné à 320,00 € / mois. Versement sans charges sociales.",
+            chips: ['Decathlon', '320,00 € / mois', 'Exonéré IR']
+          },
+          {
+            id: 'transfert', label: 'Transferts entrants', tag: '14 %',
+            amount: 3150, pv: +174.65, share: 0.14,
+            tone: 'orange', color: 'var(--ag-orange)',
+            desc: "Transfert d'un ancien PERCO Decathlon effectué le 03/04/2021.",
+            chips: ['PERCO 2018-2021', 'Transfert du 03/04/2021']
+          }
+        ]
+      },
+
+      support: {
+        title: 'Par type de support',
+        meta: 'Allocation actuelle',
+        countLabel: n => n + ' type' + (n>1?'s':'') + ' de support',
+        slices: [
+          {
+            id: 'uc', label: 'Unités de compte', tag: '62 %',
+            amount: 13950, pv: +1148.20, share: 0.62,
+            tone: 'orange', color: 'var(--ag-orange)',
+            desc: "Supports investis sur les marchés actions, obligations et immobilier. Capital non garanti.",
+            chips: ['Actions internationales', 'Obligations €', 'SCPI', 'ETF World']
+          },
+          {
+            id: 'euros', label: 'Fonds en euros', tag: '38 %',
+            amount: 8550, pv: +97.47, share: 0.38,
+            tone: 'cyan', color: 'var(--ag-cyan)',
+            desc: "Capital garanti à 100 %. Rendement servi au 31/12/2025 : 2,15 % net de frais de gestion.",
+            chips: ['Capital garanti', 'Rendement 2,15 %', 'Effet cliquet']
+          }
+        ]
+      },
+
+      financier: {
+        title: 'Par support financier',
+        meta: 'Top 4 lignes · 100 % de l\'encours',
+        countLabel: n => n + ' support' + (n>1?'s':'') + ' financier' + (n>1?'s':''),
+        slices: [
+          {
+            id: 'euros', label: 'Test AG Fonds Euros', tag: '38 %',
+            amount: 8550, pv: +97.47, share: 0.38,
+            tone: 'cyan', color: 'var(--ag-cyan)',
+            desc: "FR0010234567 · Fonds à capital garanti, gestion en interne. Frais courants 0,60 %.",
+            chips: ['Capital garanti', 'Risque 1/7', 'ISR']
+          },
+          {
+            id: 'world', label: 'Amundi MSCI World ESG', tag: '28 %',
+            amount: 6300, pv: +618.74, share: 0.28,
+            tone: 'blue', color: 'var(--ag-blue)',
+            desc: "LU2089238040 · ETF actions internationales, sélection ESG. Frais courants 0,18 %.",
+            chips: ['Risque 5/7', 'ESG', '1 470 lignes', 'Réplication physique']
+          },
+          {
+            id: 'oblig', label: 'Carmignac Obligations €', tag: '22 %',
+            amount: 4950, pv: +296.13, share: 0.22,
+            tone: 'green', color: 'var(--ag-green)',
+            desc: "FR0010135103 · Obligations souveraines et corporate zone euro. Duration 6,2 ans.",
+            chips: ['Risque 3/7', 'Investment Grade', 'Duration 6,2 ans']
+          },
+          {
+            id: 'scpi', label: 'SCPI Pierval Santé', tag: '12 %',
+            amount: 2700, pv: +233.86, share: 0.12,
+            tone: 'purple', color: 'var(--ag-purple)',
+            desc: "FR0013246823 · Immobilier santé européen. 132 actifs, taux d'occupation 96 %.",
+            chips: ['Immobilier', 'Europe', 'TOF 96 %']
+          }
+        ]
+      }
+    };
+
+    const donut     = document.getElementById('donut');
+    const donutTitle = document.getElementById('donut-title');
+    const donutMeta = document.getElementById('donut-meta');
+    const donutCount= document.getElementById('donut-count');
+    const legendEl  = document.getElementById('legend');
+    const bdEl      = document.getElementById('breakdown');
+    const tabs      = document.querySelectorAll('.tab');
+
+    function render(viewKey) {
+      const v = VIEWS[viewKey];
+      // Compute slice ends for conic-gradient
+      let acc = 0;
+      const ends = v.slices.map(s => {
+        acc += s.share * 100;
+        return Math.min(100, +acc.toFixed(4)) + '%';
+      });
+
+      // Set conic-gradient via inline CSS vars
+      const colors = v.slices.map(s => s.color);
+      donut.style.background = `conic-gradient(${
+        v.slices.map((s, i) => {
+          const start = i === 0 ? '0' : ends[i - 1];
+          return `${s.color} ${start} ${ends[i]}`;
+        }).join(', ')
+      })`;
+
+      donutTitle.textContent = v.title;
+      donutMeta.textContent  = v.meta;
+      donutCount.textContent = v.countLabel(v.slices.length);
+
+      // Legend
+      legendEl.innerHTML = v.slices.map(s => `
+        <div class="leg">
+          <span class="sw" style="background: ${s.color};"></span>
+          <div>
+            <div class="lbl">${s.label}</div>
+            <div class="pct">${Math.round(s.share * 100)}&nbsp;% · ${s.tag}</div>
+          </div>
+          <span class="val">${fmtEUR(s.amount)}</span>
+        </div>
+      `).join('');
+
+      // Breakdown cards
+      bdEl.innerHTML = v.slices.map(s => `
+        <article class="bd-card tone-${s.tone}">
+          <div class="bd-top">
+            <div class="bd-name">
+              <span class="tag">${s.tag}</span>
+              <span class="bd-title">${s.label}</span>
+            </div>
+            <span class="bd-share">${Math.round(s.share * 100)}&nbsp;%</span>
+          </div>
+          <div class="bd-body">
+            <div>
+              <div class="bd-amount">${fmtEUR(s.amount)}</div>
+              <div class="bd-amount-sub">Encours réparti · estim. au 12/05/2026</div>
+            </div>
+            <div class="bd-pv">
+              <span class="v ${s.pv < 0 ? 'neg' : ''}">${fmtPV(s.pv)}</span>
+              <div class="l">Plus-value estimée · 12 mois</div>
+            </div>
+          </div>
+          <div class="bd-desc">${s.desc}</div>
+          <div class="bd-meta">
+            <div class="chips">${s.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
+            <button class="more" type="button">Détails →</button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Wire up tabs
+    tabs.forEach(t => t.addEventListener('click', () => {
+      tabs.forEach(o => {
+        o.classList.toggle('active', o === t);
+        o.setAttribute('aria-selected', o === t ? 'true' : 'false');
+      });
+      render(t.dataset.view);
+    }));
+
+    // Initial render
+    render('mode');
+  </script>
+</body>
+</html>

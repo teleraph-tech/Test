@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; background: var(--ag-blue-tint); }
+  .row { display:flex; gap: 13px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 16px; border-radius: 8px;
+    font: 700 14px/1 var(--font-sans); color: var(--ag-ink);
+    background: #fff; border: 1px solid var(--ag-ink);
+    cursor: pointer;
+  }
+  .btn svg { width: 20px; height: 20px; color: var(--ag-ink); }
+  .btn:hover, .btn.hover { border-color: var(--ag-blue); color: var(--ag-blue); }
+  .btn:hover svg, .btn.hover svg { color: var(--ag-blue); }
+  .lab { font: 700 14px/1 var(--font-sans); color: var(--ag-ink); margin-bottom: 6px; }
+</style></head><body>
+  <div class="lab">Agir sur votre contrat</div>
+  <div class="row">
+    <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>Faire un versement</button>
+    <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c1-4 5-5 7-5s6 1 7 5" stroke-linecap="round"/></svg>Faire un rachat</button>
+    <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 3v4M16 3v4" stroke-linecap="round"/></svg>Faire un versement programmé</button>
+  </div>
+</body></html>

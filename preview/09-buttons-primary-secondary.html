@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; }
+  .row { gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px; border-radius: 8px; font: 400 14px/1.4 var(--font-sans);
+    cursor: pointer; border: 1px solid transparent;
+  }
+  .primary { background: var(--ag-ink); color: #fff; border-color: var(--ag-blue); }
+  .primary.hover-state { background: var(--ag-blue); border-color: var(--ag-blue); color: #fff; }
+  .secondary { background: #fff; color: var(--ag-ink); border-color: var(--ag-ink); font-weight: 700; }
+  .secondary.hover-state { background: var(--ag-blue); border-color: var(--ag-blue); color: #fff; }
+  .ic { width: 18px; height: 18px; display: inline-block; position: relative; }
+  .plus { position: relative; }
+  .plus::before, .plus::after { content: ""; position: absolute; background: currentColor; }
+  .plus::before { left: 8px; top: 2px; width: 2px; height: 14px; }
+  .plus::after  { left: 2px; top: 8px; width: 14px; height: 2px; }
+  .circle { border: 1.5px solid currentColor; border-radius: 50%; }
+  .lab { font: 400 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--fg-2); margin-top: 6px; }
+  .stack { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+</style></head><body>
+  <div class="row">
+    <div class="stack">
+      <button class="btn primary"><span class="ic plus circle"></span>Primary</button>
+      <div class="lab">— default</div>
+    </div>
+    <div class="stack">
+      <button class="btn primary hover-state"><span class="ic plus circle"></span>Primary</button>
+      <div class="lab">— hover (blue fill)</div>
+    </div>
+    <div class="stack">
+      <button class="btn secondary"><span class="ic plus circle"></span>Secondary</button>
+      <div class="lab">— default</div>
+    </div>
+    <div class="stack">
+      <button class="btn secondary hover-state"><span class="ic plus circle"></span>Secondary</button>
+      <div class="lab">— hover (blue fill)</div>
+    </div>
+  </div>
+</body></html>

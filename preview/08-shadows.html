@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 28px 24px; background: var(--ag-blue-tint); }
+  .row { gap: 32px; align-items: center; justify-content: flex-start; }
+  .card {
+    width: 200px; height: 80px; border-radius: 8px; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font: 600 12px/1.4 var(--font-sans); color: var(--fg-1);
+  }
+  .lab { font: 400 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--fg-2); margin-top: 6px; }
+  .stack { display: flex; flex-direction: column; align-items: flex-start; }
+</style></head><body>
+  <div class="row">
+    <div class="stack"><div class="card" style="box-shadow:none">No elevation</div><div class="lab">— flat</div></div>
+    <div class="stack"><div class="card" style="box-shadow:var(--shadow-card-soft)">shadow-card-soft</div><div class="lab">0 4 16 rgba(176,188,224,.75)</div></div>
+    <div class="stack"><div class="card" style="box-shadow:var(--shadow-card)">shadow-card</div><div class="lab">0 4 16 rgb(176,188,224)</div></div>
+  </div>
+</body></html>

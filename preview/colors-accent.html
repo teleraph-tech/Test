@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    body { padding: 20px; box-sizing: border-box; }
+    .swatch-row { display: flex; gap: 12px; align-items: stretch; }
+    .swatch { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .chip { height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.04); }
+    .hex { font-size: 11px; color: var(--fg-2); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .name { font-size: 12px; color: var(--fg-1); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="swatch-row">
+    <div class="swatch"><div class="chip" style="background:var(--ag-green)"></div><div class="name">Green</div><div class="hex">#55BCAD</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-green-tint)"></div><div class="name">Green tint</div><div class="hex">#90ECB2</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-yellow)"></div><div class="name">Yellow</div><div class="hex">#FBDC6C</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-cyan)"></div><div class="name">Cyan</div><div class="hex">#60C2E5</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-cyan-tint)"></div><div class="name">Cyan tint</div><div class="hex">#B5DCE9</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-pink)"></div><div class="name">Pink (F)</div><div class="hex">#F098DA</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-violet)"></div><div class="name">Violet (M)</div><div class="hex">#9DAFFF</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-orange)"></div><div class="name">Orange</div><div class="hex">#EE8339</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-purple)"></div><div class="name">Purple</div><div class="hex">#7229F5</div></div>
+  </div>
+</body>
+</html>

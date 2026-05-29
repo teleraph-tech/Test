@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; background: var(--ag-rule); }
+  .row { display: flex; gap: 19px; }
+  .card {
+    width: 302px; height: 133px; border-radius: 8px; background: #fff;
+    box-shadow: var(--shadow-card); padding: 16px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .topR { display:flex; justify-content:space-between; align-items:center; }
+  .eyebrow { font: 700 12px/1.4 var(--font-sans); color: var(--ag-ink-pure); display:flex; align-items:center; gap:8px; letter-spacing:.02em; }
+  .eyebrow svg { width: 14px; height: 14px; }
+  .date { font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); }
+  .title { font: 700 16px/1.4 var(--font-sans); color: var(--ag-blue); }
+  .meta { display:flex; align-items:center; gap:8px; font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); }
+  .tick { width:1px; height:12px; background: var(--fg-2); }
+  .b { font-weight: 700; }
+</style></head><body>
+  <div class="row">
+    <div class="card">
+      <div class="topR">
+        <div class="eyebrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2 h6 l3 3 v9 H4 z"/><path d="M10 2 v3 h3"/></svg>DOCUMENTS CONTRACTUELS</div>
+        <span class="date">01/10/2026</span>
+      </div>
+      <div>
+        <div class="title">Notice d'information</div>
+        <div class="meta" style="margin-top:6px"><div class="tick"></div><span class="b">UNIPRICE SA</span><span>RG1362691</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="topR">
+        <div class="eyebrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2 h6 l3 3 v9 H4 z"/><path d="M10 2 v3 h3"/></svg>RELEVÉ DE SITUATION</div>
+        <span class="date">15/06/2026</span>
+      </div>
+      <div>
+        <div class="title">Situation au 31/12/2025</div>
+        <div class="meta" style="margin-top:6px"><div class="tick"></div><span class="b">TEST AG</span><span>0123456789</span></div>
+      </div>
+    </div>
+  </div>
+</body></html>

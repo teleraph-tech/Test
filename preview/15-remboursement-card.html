@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; background: var(--ag-blue-tint); }
+  .card {
+    background:#fff; border-radius:8px; padding:16px 20px; box-shadow: var(--shadow-card);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .left { display:flex; flex-direction:column; gap:8px; }
+  .row1 { display:flex; align-items:center; gap:8px; }
+  .ico { width:22px; height:22px; color: var(--ag-ink); }
+  .title { font: 700 16px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .date { font: 400 14px/1.4 var(--font-sans); color: var(--fg-2); }
+  .who { display:flex; align-items:center; gap:8px; padding-left:32px; }
+  .av { width:24px; height:24px; border-radius:9999px; background: var(--ag-pink); border:2px solid var(--ag-pink); display:inline-flex; align-items:center; justify-content:center; font:400 12px/1 var(--font-sans); color: var(--ag-ink); }
+  .name { font: 400 14px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .right { display:flex; gap:24px; align-items:center; }
+  .col { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .amount { font: 700 16px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .pill { display:inline-flex; padding:4px 8px; border-radius:8px; font:400 12px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .d { background: var(--ag-yellow); }
+  .r { background: var(--ag-green-tint); }
+</style></head><body>
+  <div class="card">
+    <div class="left">
+      <div class="row1">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 v14" stroke-linecap="round"/><path d="M16 7l-4-4-4 4" stroke-linecap="round"/><path d="M7 21 h10" stroke-linecap="round"/></svg>
+        <span class="title">Auditif</span>
+        <span class="date">soin du 21/02/2021</span>
+      </div>
+      <div class="who"><span class="av">IC</span><span class="name">Inès Cordonier</span></div>
+    </div>
+    <div class="right">
+      <div class="col"><div class="amount">27,95 €</div><span class="pill d">Dépensé</span></div>
+      <div class="col"><div class="amount">25,50 €</div><span class="pill r">Remboursé</span></div>
+    </div>
+  </div>
+</body></html>

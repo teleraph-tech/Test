@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    body { padding: 20px; box-sizing: border-box; }
+    .swatch-row { display: flex; gap: 12px; align-items: stretch; }
+    .swatch { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .chip { height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.04); }
+    .hex { font-size: 11px; color: var(--fg-2); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .name { font-size: 12px; color: var(--fg-1); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="swatch-row">
+    <div class="swatch"><div class="chip" style="background:var(--ag-blue)"></div><div class="name">Primary</div><div class="hex">#0242F4</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-blue-tint); border-color:rgba(2,66,244,0.1)"></div><div class="name">Blue tint</div><div class="hex">#E6EEFD</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-ink)"></div><div class="name">Ink</div><div class="hex">#0C0C0C</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-grey)"></div><div class="name">Grey</div><div class="hex">#666666</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--ag-rule); border-color:rgba(0,0,0,0.06)"></div><div class="name">Rule</div><div class="hex">#EDEDED</div></div>
+    <div class="swatch"><div class="chip" style="background:#fff; border-color:rgba(0,0,0,0.08)"></div><div class="name">Surface</div><div class="hex">#FFFFFF</div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; }
+  .row { gap: 28px; flex-wrap: wrap; align-items: center; }
+  .stack { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .chip {
+    width: 32px; height: 32px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ag-grey); background: #fff;
+    border: 1px solid var(--ag-grey);
+    cursor: pointer;
+  }
+  .chip.active { background: var(--ag-blue); border-color: transparent; color: #fff; }
+  .chip svg { width: 16px; height: 16px; }
+  .hyper { display:inline-flex; gap:4px; align-items:center; font:400 14px/1.4 var(--font-sans); color: var(--ag-ink); cursor:pointer; }
+  .hyper.hover { color: var(--ag-blue); box-shadow: 0 1px 0 var(--ag-blue); }
+  .hyper svg { width:16px; height:16px; }
+  .lab { font: 400 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--fg-2); }
+</style></head><body>
+  <div class="row">
+    <div class="stack">
+      <div style="display:flex;gap:8px">
+        <span class="chip" title="default"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 4 L6 8 L10 12" /><path d="M14 8 H6" /></svg></span>
+        <span class="chip active" title="active"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 4 L6 8 L10 12"/><path d="M14 8 H6"/></svg></span>
+      </div>
+      <div class="lab">Small icon · 32×32 · r4</div>
+    </div>
+    <div class="stack">
+      <div class="hyper">Hypertexte <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></div>
+      <div class="lab">Hyperlink · default</div>
+    </div>
+    <div class="stack">
+      <div class="hyper hover">Hypertexte <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></div>
+      <div class="lab">Hyperlink · hover</div>
+    </div>
+  </div>
+</body></html>

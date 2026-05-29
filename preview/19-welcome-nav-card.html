@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<link rel="stylesheet" href="../assets/icons.css">
+<style>
+  body { padding: 0; margin: 0; background: var(--ag-blue-tint); }
+  .hero { background: var(--ag-ink); height: 60px; }
+  .stage { padding: 0 28px; margin-top: -28px; padding-bottom: 24px; }
+  .wcard {
+    background: #fff; border-radius: 8px; box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .top { display:flex; justify-content:space-between; align-items:center; padding: 14px 20px; border-bottom: 1px solid var(--ag-rule); }
+  .greet { font: 500 20px/1.4 var(--font-sans); color: var(--ag-ink); }
+  .adh { font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); margin-top: 2px; }
+  .bell { width:32px; height:32px; border-radius:4px; background: var(--ag-blue-tint); color: var(--ag-blue); display:inline-flex; align-items:center; justify-content:center; }
+  .bell .i { width: 18px; height: 18px; }
+  .nav { display:flex; gap: 24px; padding: 10px 20px 12px; flex-wrap:wrap; }
+  .tab { display:flex; align-items:center; gap: 10px; padding: 4px; }
+  .chip { width:32px; height:32px; border-radius:4px; background: transparent; color: var(--ag-ink); display:inline-flex; align-items:center; justify-content:center; }
+  .chip .i { width:20px; height:20px; }
+  .label { font: 700 14px/1.2 var(--font-sans); color: var(--ag-ink); }
+  .sub { font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); }
+  .col { display:flex; flex-direction:column; }
+</style></head><body>
+  <div class="hero"></div>
+  <div class="stage">
+    <div class="wcard">
+      <div class="top">
+        <div><div class="greet">Bienvenue Marie Dupont</div><div class="adh">N°Adhérent : 0123456789</div></div>
+        <div class="bell"><span class="i i-bell"></span></div>
+      </div>
+      <div class="nav">
+        <div class="tab"><span class="chip"><span class="i i-heart"></span></span><div class="col"><span class="label">Votre santé</span><span class="sub">4 remboursements récents</span></div></div>
+        <div class="tab"><span class="chip"><span class="i i-calendar"></span></span><div class="col"><span class="label">Votre retraite</span><span class="sub">45 000,52 €</span></div></div>
+        <div class="tab"><span class="chip"><span class="i i-piggy"></span></span><div class="col"><span class="label">Votre épargne</span><span class="sub">45 000,52 €</span></div></div>
+      </div>
+    </div>
+  </div>
+</body></html>

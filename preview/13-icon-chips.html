@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<link rel="stylesheet" href="../assets/icons.css">
+<style>
+  body { padding: 22px 24px; }
+  .row { gap: 18px; flex-wrap: wrap; align-items: center; }
+  .chip {
+    width: 32px; height: 32px; border-radius: 4px; background: var(--ag-blue-tint);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ag-blue);
+  }
+  .chip.on { background: var(--ag-blue); color: #fff; }
+  .chip.dark { background: var(--ag-ink); color: #fff; }
+  .chip.purple { background: rgba(114,41,245,.14); color: var(--ag-purple); }
+  .chip .i { width: 18px; height: 18px; }
+  .stack { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+  .lab { font: 400 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--fg-2); }
+</style></head><body>
+  <div class="row">
+    <div class="stack"><div class="chip"><span class="i i-heart"></span></div><div class="lab">Santé</div></div>
+    <div class="stack"><div class="chip"><span class="i i-calendar"></span></div><div class="lab">Retraite</div></div>
+    <div class="stack"><div class="chip"><span class="i i-piggy"></span></div><div class="lab">Épargne</div></div>
+    <div class="stack"><div class="chip"><span class="i i-bell"></span></div><div class="lab">Notification</div></div>
+    <div class="stack"><div class="chip on"><span class="i i-bell"></span></div><div class="lab">— active</div></div>
+    <div class="stack"><div class="chip dark"><span class="i i-file"></span></div><div class="lab">— inverse</div></div>
+    <div class="stack"><div class="chip purple"><span class="i i-file"></span></div><div class="lab">Documents</div></div>
+  </div>
+</body></html>
