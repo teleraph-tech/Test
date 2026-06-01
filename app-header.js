@@ -287,32 +287,32 @@
       <div class="ah-row2">
         <nav class="ah-nav" aria-label="Navigation principale">
           <div class="ah-nav-group">
-            <a class="ah-link ${active==='accueil'?'active':''}" href="Espace Client - Accueil.html">
+            <a class="ah-link ${active==='accueil'?'active':''}" href="index.html">
               ${homeIcon()}
               Accueil
             </a>
             <div class="ah-drop">
-              <a class="ah-link ${active==='sante'?'active':''}" href="Espace Client - Accueil.html#sante">
+              <a class="ah-link ${active==='sante'?'active':''}" href="index.html#sante">
                 <span class="ic" aria-hidden="true"><span class="i i-heart"></span></span>
                 Votre santé
                 ${arrowDown()}
               </a>
               <div class="ah-drop-menu" role="menu">
-                <a href="Espace Client - Accueil.html#sante">Vos remboursements <span class="sub">5 derniers · 30 jours</span></a>
-                <a href="Espace Client - Accueil.html#sante">Votre carte tiers payant <span class="sub">Valable jusqu'au 31/12/2026</span></a>
+                <a href="index.html#sante">Vos remboursements <span class="sub">5 derniers · 30 jours</span></a>
+                <a href="index.html#sante">Votre carte tiers payant <span class="sub">Valable jusqu'au 31/12/2026</span></a>
                 <a href="#">Vos garanties <span class="sub">Mutuelle Santé Confort</span></a>
                 <a href="#">Trouver un praticien <span class="sub">Réseau de soins Test AG</span></a>
               </div>
             </div>
             <div class="ah-drop">
-              <a class="ah-link ${active==='retraite'?'active':''}" href="Espace Client - Accueil.html#retraite">
+              <a class="ah-link ${active==='retraite'?'active':''}" href="index.html#retraite">
                 <span class="ic" aria-hidden="true"><span class="i i-calendar"></span></span>
                 Votre retraite
                 ${arrowDown()}
               </a>
               <div class="ah-drop-menu" role="menu">
                 <a href="Détails Épargne.html">Plan Épargne Retraite Entreprise <span class="sub">Vivépargne · 22 500,00 €</span></a>
-                <a href="Espace Client - Accueil.html#retraite">PER Entreprise <span class="sub">Decathlon · 45 000,52 €</span></a>
+                <a href="index.html#retraite">PER Entreprise <span class="sub">Decathlon · 45 000,52 €</span></a>
                 <a href="#">Simuler ma retraite <span class="sub">Estimation personnalisée</span></a>
                 <a href="#">Mes bénéficiaires <span class="sub">Mettre à jour la clause</span></a>
               </div>
